@@ -1,0 +1,430 @@
+﻿{
+"images": [
+{
+"id": 0,
+"path": "img/",
+"text": "세상에... 이젠 선생님이 저와 같은 인간이라는 게 믿기지 않습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":99, "height":58, "line":4}
+	]
+},
+{
+"id": 1,
+"path": "img/",
+"text": "않이 선생님... 다음달 5스북 살 명점은 남겨두셨습니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":0, "width":99, "height":29, "line":2},
+	{"boxid":1, "x":61, "y":31, "width":37, "height":44, "line":3}
+	]
+},
+{
+"id": 2,
+"path": "img/",
+"text": "선생님 언제까지 브더만 하실 겁니까??",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":0, "width":100, "height":29, "line":2}
+	]
+},
+{
+"id": 3,
+"path": "img/",
+"text": "선생님도 결국 성능충이었군요",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":8, "y":2, "width":85, "height":27, "line":2}
+	]
+},
+{
+"id": 4,
+"path": "img/",
+"text": "선생님 4선권은 언제나 은랑이란 말입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":4, "y":2, "width":92, "height":42, "line":3}
+	]
+},
+{
+"id": 5,
+"path": "img/",
+"text": "또 골던 시간을 물어보러 오셨군요",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":3, "width":91, "height":27, "line":2}
+	]
+},
+{
+"id": 6,
+"path": "img/",
+"text": "9강이 아니라면 쓸모가 없습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":2, "width":93, "height":27, "line":2}
+	]
+},
+{
+"id": 7,
+"path": "img/",
+"text": "그래서 선생님께선 티어가 어떻게 되십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":97, "height":42, "line":3}
+	]
+},
+{
+"id": 8,
+"path": "img/",
+"text": "벌써 밤입니다 선생님 브더 좀 끄십시오",
+"fillStyle": "white",
+"boxes": [
+	{"boxid":0, "x":5, "y":3, "width":90, "height":41, "line":3}
+	]
+},
+{
+"id": 9,
+"path": "img/",
+"text": "선생님.. 설마 덱에 \"그 새끼\"를 넣으신 겁니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":96, "height":42, "line":3}
+	]
+},
+{
+"id": 10,
+"path": "img/",
+"text": "정말 훌륭하십니다 선생님",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":1, "width":95, "height":27, "line":2}
+	]
+},
+{
+"id": 11,
+"path": "img/",
+"text": "선생님은 정말 개돼지입니다!!",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":11, "y":2, "width":74, "height":27, "line":2}
+	]
+},
+{
+"id": 12,
+"path": "img/",
+"text": "저에겐 인생보다 브생이 더 중요합니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":0, "width":98, "height":27, "line":2}
+	]
+},
+{
+"id": 13,
+"path": "img/",
+"text": "정말이지... 조선의 미래가 어둡습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":0, "width":99, "height":27, "line":2}
+	]
+},
+{
+"id": 14,
+"path": "img/",
+"text": "힘의 차이가 느껴지십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":95, "height":26, "line":2}
+	]
+},
+{
+"id": 15,
+"path": "img/",
+"text": "1번 성(이었던 것)",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":90, "height":12, "line":1}
+	]
+},
+{
+"id": 16,
+"path": "img/",
+"text": "1번 성",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":90, "height":12, "line":1}
+	]
+},
+{
+"id": 17,
+"path": "img/",
+"text": "선생님... \"꼴박\"하셨더군요....",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":1, "width":91, "height":27, "line":2}
+	]
+},
+{
+"id": 18,
+"path": "img/",
+"text": "통수는 타이밍 입니다 선생님",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":4, "y":1, "width":90, "height":25, "line":2}
+	]
+},
+{
+"id": 19,
+"path": "img/",
+"text": "정말 그 용병이 좋다고 생각하십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":1, "width":98, "height":27, "line":2}
+	]
+},
+{
+"id": 20,
+"path": "img/",
+"text": "`'그 새끼`'가 든든히 버텨주고 있어서 좋아 보이는 겁니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":1, "width":98, "height":42, "line":3}
+	]
+},
+{
+"id": 21,
+"path": "img/",
+"text": "아직도 선생님 실력으로 티어를 올렸다고 생각하나요?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":98, "height":41, "line":3}
+	]
+},
+{
+"id": 22,
+"path": "img/",
+"text": "또 과금이라니 정말 눈뜨고 못 보겠군요",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":2, "width":98, "height":27, "line":2}
+	]
+},
+{
+"id": 23,
+"path": "img/",
+"text": "그만 인정하십시오.. 그건 \"똥캐\"입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":1, "width":100, "height":27, "line":2}
+	]
+},
+{
+"id": 24,
+"path": "img/",
+"text": "마치 선생님께선 성능충이 아닌 것처럼 말씀하시는군요",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":-1, "width":98, "height":42, "line":3}
+	]
+},
+{
+"id": 25,
+"path": "img/",
+"text": "선생님이 씹네덕새끼라는 건 오래 전부터 알고 있었습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":-1, "width":93, "height":27, "line":2},
+	{"boxid":1, "x":1, "y":29, "width":42, "height":43, "line":3}
+	]
+},
+{
+"id": 26,
+"path": "img/",
+"text": "혹시 브라운더스트 아십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":2, "width":95, "height":26, "line":2}
+	]
+},
+{
+"id": 27,
+"path": "img/",
+"text": "제가 갓겜이라고 할줄 아셨습니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":2, "width":98, "height":27, "line":2}
+	]
+},
+{
+"id": 28,
+"path": "img/",
+"text": "하아... 차라리 브더나 하십시오 진짜",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":3, "width":96, "height":26, "line":2}
+	]
+},
+{
+"id": 29,
+"path": "img/",
+"text": "계산중",
+"fillStyle": "red",
+"boxes": [
+	{"boxid":0, "x":33, "y":21, "width":35, "height":12, "line":1}
+	]
+},
+{
+"id": 30,
+"path": "img/",
+"text": "계산 결과 선생님께선 \"성능충\" 입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":1, "width":97, "height":42, "line":2}
+	]
+},
+{
+"id": 31,
+"path": "img/",
+"text": "브더에 상식을 기대하신 선생님 잘못입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":97, "height":27, "line":2}
+	]
+},
+{
+"id": 32,
+"path": "img/",
+"text": "대체 왜 또 스북을 낭비하십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":4, "y":0, "width":91, "height":27, "line":2}
+	]
+},
+{
+"id": 33,
+"path": "img/",
+"text": "제발 이러지 마십시오 이건 \"망테크\"입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":1, "width":97, "height":42, "line":3}
+	]
+},
+{
+"id": 34,
+"path": "img/",
+"text": "어쩌면... 이건 탈브더할 기회입니다 선생님",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":97, "height":42, "line":3}
+	]
+},
+{
+"id": 35,
+"path": "img/",
+"text": "그냥 솔직히 말하십시오 \"그 새끼\" 덕분이라고",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":0, "width":97, "height":42, "line":3}
+	]
+},
+{
+"id": 36,
+"path": "img/",
+"text": "모르시나본데 과금도 전략입니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":2, "width":94, "height":27, "line":2}
+	]
+},
+{
+"id": 37,
+"path": "img/",
+"text": "죄송하지만 버스는 이미 지나갔습니다 선생님",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":4, "y":2, "width":94, "height":42, "line":3}
+	]
+},
+{
+"id": 38,
+"path": "img/",
+"text": "이건 3성 뽑기권입니다 왜 5성을 기대하십니까?",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":2, "width":96, "height":42, "line":3}
+	]
+},
+{
+"id": 39,
+"path": "img/",
+"text": "무조건 존버 또 존버하십시오",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":91, "height":27, "line":2}
+	]
+},
+{
+"id": 40,
+"path": "img/",
+"text": "선생님을 키우신 부모님의 노고가 정말 굉장했겠군요...",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":-1, "width":98, "height":42, "line":3}
+	]
+},
+{
+"id": 41,
+"path": "img/",
+"text": "억지부리지 마십시오 그게 아니더라도 감프스를 욕할 방법은 많습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":0, "y":-1, "width":98, "height":57, "line":4}
+	]
+},
+{
+"id": 42,
+"path": "img/",
+"text": "또 브더가 섭종할 이유를 찾아내셨군요 정말 끝이 없습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":3, "y":1, "width":94, "height":27, "line":2},
+	{"boxid":1, "x":3, "y":31, "width":64, "height":27, "line":2}
+	]
+},
+{
+"id": 43,
+"path": "img/",
+"text": "선생님의 변태 성욕에는 아무도 관심이 없습니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":2, "width":98, "height":42, "line":3}
+	]
+},
+{
+"id": 44,
+"path": "img/",
+"text": "선생님의 덱을 분석한 결과 \"떡락\"이 예상됩니다",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":-1, "width":100, "height":42, "line":3}
+	]
+},
+{
+"id": 45,
+"path": "img/",
+"text": "성능충 운운하기 전에 선생님의 덱을 돌아보십시오",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":2, "y":0, "width":97, "height":42, "line":3}
+	]
+},
+{
+"id": 46,
+"path": "img/",
+"text": "아무리 봐도 \"그 새끼\"로 얻은 점수로군요",
+"fillStyle": "black",
+"boxes": [
+	{"boxid":0, "x":1, "y":1, "width":95, "height":42, "line":3}
+	]
+}
+]
+}
