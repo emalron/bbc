@@ -57,13 +57,22 @@ var cbWrite = function(text) {
 }
 
 var cbDone = function() {
-    let img = document.getElementById("output-img");
-    let canv = document.getElementById("dis");
-    
-    let img_data = canv.toDataURL();
-    img.src = img_data;
-    
-    // copy the image to clipboard...
+    if(selectedImg.id != undefined) {
+        let img = document.getElementById("output-img");
+        let canv = document.getElementById("dis");
+
+        let img_data = canv.toDataURL();
+        img.src = img_data;
+
+        // copy the image to clipboard...
+
+        console.log(selectedImg.id);
+        gtag('event', 'bake', {
+            'event_category': 'work done',
+            'event_label': 'baked image id',
+            'value': selectedImg.id
+        });
+    }
 }
 
 function drawGallery(nums) {
