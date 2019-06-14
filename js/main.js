@@ -177,7 +177,6 @@ function loadImage(path, canvas, ctx) {
     return new Promise(function(resolve, reject) {
         let i = new Image();
         i.src = path;
-        console.log(i);
         resolve({image:i, canvas: canvas, context: ctx});
     });
 }
