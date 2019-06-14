@@ -79,7 +79,7 @@ var cbDone = function() {
 
 function drawGallery(nums) {
     let gallery = document.getElementById("gallery");
-
+    
     for(i=0;i<nums;i++) {
         addImage(gallery, i);
     }
@@ -185,10 +185,10 @@ function drawImageToCanvas(param) {
     return new Promise(function(resolve, reject) {
         let image = param.image;
         let canv = param.canvas;
-        let ctx = canv.getContext('2d');
+        let ctx = param.context;
         
-        canv.width = image.width;
-        canv.height = image.height;
+        canv.width = 100;
+        canv.height = 100;
         
         ctx.clearRect(0,0,100,100);
         ctx.drawImage(image, 0, 0);
