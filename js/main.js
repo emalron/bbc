@@ -23,6 +23,49 @@ window.onload = function() {
     
 }
 
+var cbSelect = function(img) {
+    let id = img.id;
+    
+    if(selectedImg.id != undefined) {
+        let pid = selectedImg.id;
+        selectedImg.src = "img/o" + pid +".png";
+    }
+    selectedImg = img;
+    selectedImg.src = "img/w" + id + ".png";
+    
+    let origin = document.getElementById("original-img");
+    
+    origin.src = "img/o" + id + ".png";
+    
+    // set canvas setting
+    canvas.width = selectedImg.width;
+    canvas.height = selectedImg.height;
+    ctx.font = "11px 굴림";
+    
+    // clear textarea
+    let textA = document.getElementById("text");
+    textA.value = "";
+    
+    // selectData
+    setData(database, id);
+}
+
+var cbWrite = function(text) {
+    if(data != null) {
+        writeText(text, data);
+    }
+}
+
+var cbDone = function() {
+    let img = document.getElementById("output-img");
+    let canv = document.getElementById("dis");
+    
+    let img_data = canv.toDataURL();
+    img.src = img_data;
+    
+    // copy the image to clipboard...
+}
+
 function drawGallery(nums) {
     let gallery = document.getElementById("gallery");
 
@@ -40,36 +83,6 @@ function addImage(gallery, id) {
     gallery.appendChild(img);
 }
 
-var cbSelect = function(img) {
-    let id = img.id;
-    
-    if(selectedImg.id != undefined) {
-        let pid = selectedImg.id;
-        selectedImg.src = "img/o" + pid +".png";
-    }
-    selectedImg = img;
-    selectedImg.src = "img/w" + id + ".png";
-    
-    // set canvas setting
-    canvas.width = selectedImg.width;
-    canvas.height = selectedImg.height;
-    ctx.font = "11px 굴림";
-    
-    // clear textarea
-    let textA = document.getElementById("text");
-    textA.value = "";
-    
-    // selectData
-    console.log(database);
-    setData(database, id);
-}
-
-var cbWrite = function(text) {
-    if(data != null) {
-        console.log(data.id);
-        writeText(text, data);
-    }
-}
 
 var setData = function(jsonData, id) {
     data = jsonData.images[id];
