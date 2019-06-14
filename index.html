@@ -14,11 +14,16 @@
             <p>연락:github.com/emalron/bbc issue 게시판</p>
         </div>
         
-        <div id="jes" align="center">
-            <hr>
-            <canvas id="dis" width="100" height="100"></canvas>
-            <hr>
-            
+        <div id="jes" style="width: 100%" align="center">
+            <div id="disp-original" style="display:inline">
+                <img id="orignal-img" src="img/original.png" style="margin-right: 10px">
+            </div>
+            <div id="disp-preview" style="display:inline">
+                <canvas id="dis" width="100" height="100"></canvas>
+            </div>
+            <div id="disp-output" style="display: inline">
+                <img id="output-img" src="img/output.png" style="margin-left: 10px">
+            </div>
         </div>
         <p>write here ↓</p>
         <form class="input" action="index.html" method="post">
