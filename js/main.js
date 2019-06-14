@@ -72,6 +72,8 @@ var cbDone = function() {
             'event_label': 'baked image id',
             'value': selectedImg.id
         });
+        
+        
     }
 }
 
@@ -151,19 +153,46 @@ var writeText = function(text, data) {
         }
     }
     
-    showSelectedImage(data.id);
-    
-    ctx.fillStyle = data.fillStyle
-    
-    colorCheck = false;
-    for(j=0; j<lines.length; j++) {
-        ctx.fillText(lines[j], data.lineInfo[j].x, data.lineInfo[j].y);
-    }
+    showSelectedImage(data.id, lines)
 }
 
-var showSelectedImage = function(id) {
-    var img = new Image();
-    img.src = 'img/e'+id + '.png';
-    ctx.clearRect(0,0,100,100)
-    ctx.drawImage(img,0,0);
+var showSelectedImage = function(id, lines) {
+    let path = 'img/e'+ id + '.png'; 
+    let img = new Image();
+    img.src = path;
+
+    loadImage(path, canvas, ctx)
+    .then(drawImageToCanvas)
+    .then(function() {
+        ctx.fillStyle = data.fillStyle
+        ctx.font = "11px 굴림";
+    
+        for(j=0; j<lines.length; j++) {
+            ctx.fillText(lines[j], data.lineInfo[j].x, data.lineInfo[j].y);
+        }
+    })
+}
+
+function loadImage(path, canvas, ctx) {
+    return new Promise(function(resolve, reject) {
+        let i = new Image();
+        i.src = path;
+        console.log(i);
+        resolve({image:i, canvas: canvas, context: ctx});
+    });
+}
+
+function drawImageToCanvas(param) {
+    return new Promise(function(resolve, reject) {
+        let image = param.image;
+        let canv = param.canvas;
+        let ctx = canv.getContext('2d');
+        
+        canv.width = image.width;
+        canv.height = image.height;
+        
+        ctx.clearRect(0,0,100,100);
+        ctx.drawImage(image, 0, 0);
+        resolve(canv);
+    });
 }
