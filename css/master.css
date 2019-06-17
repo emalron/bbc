@@ -1,0 +1,58 @@
+html {
+    font-size: 36px;
+}
+
+#desc p {
+    text-align: center;
+    font-size: 1.0rem
+}
+
+#jes {
+    text-align: center;
+}
+
+#jes #original-img {
+    margin-right: 10px;
+}
+
+#jes #dis {
+    border: 1px solid black;
+}
+
+#jes #output-img {
+    margin-left: 10px;
+}
+
+#inputs {
+    font-size: 1.0rem
+}
+
+#inputs #textarea {
+    display: flex;
+    float: left;
+    margin: 0px auto;
+    padding-bottom: 10px;
+    width: 100%
+}
+
+#inputs #textarea #text {
+    width: 80%;
+    font-size: 1.0rem
+}
+
+#inputs button {
+    width: 19%;
+    margin-left: 1%;
+    float: right;
+    font-size: 1.0rem
+}
+
+#kiosk {
+    font-size: 1.0rem
+}
+
+@media screen and (min-device-width: 700px) {
+    html {
+        font-size: 16px;
+    }
+}

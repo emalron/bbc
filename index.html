@@ -12,43 +12,35 @@
           gtag('config', 'UA-126801807-2');
         </script>
         <script src="js/main.js" charset="UTF-8"></script>
-        <style>
-        </style>
-        
+        <link rel="stylesheet" href="/css/master.css">
     </head>
     <body>
-        <div id="desc" align="center">
-            <hr>
+        <div class="title" id="desc">
             <p>우리 친구들이 좋아하는 브붕콘 만들기 v.1.1</p>
             <p>연락:github.com/emalron/bbc issue 게시판</p>
+            <hr>
         </div>
-        <div id="jes" align="center">
-            <img id="original-img" src="img/original.png" style="margin-right: 10px">
-            <canvas id="dis" width="100" height="100" style="border: 1px solid"></canvas>
-            <img id="output-img" src="img/output.png" style="margin-left: 10px">
+        <div id="jes">
+            <img id="original-img" src="img/original.png">
+            <canvas id="dis" width="100" height="100"></canvas>
+            <img id="output-img" src="img/output.png">
         </div>
         <div id="inputs">
             <div>
                 <p>write here ↓</p>
             </div>
-            <div style="display: inline-flex;align-items: center">
-                <div id= "text-input">
-                    <textarea id="text" rows="4" cols="20" onkeyup="cbWrite(this.value)"></textarea>
-                </div>
-                <div id="submit-input" style="margin-left: 10px">
-                    <button style="width:100px" onclick="cbDone()">Click to bake the image</button>
-                </div>
+            <div id="textarea">
+                <textarea id="text" rows="4" cols="20" onkeyup="cbWrite(this.value)"></textarea>
+
+                <button onclick="cbDone()">Click to bake the image</button>
             </div>
-            
         </div>
-        <div>
+        <div id="kiosk">
             <hr>
             <p>choose one ↓</p>
         </div>
         <div id="gallery">
 
         </div>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-
     </body>
 </html>

@@ -90,6 +90,7 @@ function addImage(gallery, id) {
     img.src = "img/o" + id + ".png";
     img.id = id;
     img.setAttribute("onclick", 'cbSelect(this)')
+    img.setAttribute("class", 'gallery-img')
     
     gallery.appendChild(img);
 }
