@@ -66,11 +66,9 @@ var cbDone = function() {
 
         // copy the image to clipboard...
 
-        console.log(selectedImg.id);
         gtag('event', 'bake', {
             'event_category': 'work done',
-            'event_label': 'baked image id',
-            'value': selectedImg.id
+            'event_label': selectedImg.id
         });
         
         
