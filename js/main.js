@@ -1,3 +1,5 @@
+// needed to make module
+
 var canvas;
 var ctx;
 var image;
@@ -5,23 +7,78 @@ var data = {};
 var database = {};
 var selectedImg = {};
 
+// loading process
+
 window.onload = function() {
+    // set initial canvas stuffs
     canvas = document.getElementById("dis");
     ctx = canvas.getContext('2d');
     
     let path = "data/sample0.txt";
-    
     let req = new XMLHttpRequest();
     req.onreadystatechange = function() {
         if(this.readyState == 4 && this.status == 200) {
             database = JSON.parse(this.responseText);
             drawGallery(database.images.length);
+            setImagesToLocalStorage();
         }
     }
     req.open("GET", path, true);
     req.send();
     
 }
+
+function drawGallery(nums) {
+    let gallery = document.getElementById("gallery");
+    
+    for(i=0;i<nums;i++) {
+        addImage(gallery, i);
+    }
+}
+
+function addImage(gallery, id) {
+    var img = document.createElement("img");
+    img.src = "img/o" + id + ".png";
+    img.id = id;
+    img.setAttribute("onclick", 'cbSelect(this)')
+    img.setAttribute("class", 'gallery-img')
+    
+    gallery.appendChild(img);
+}
+
+function setImagesToLocalStorage() {
+    for(let i=0;i<database.images.length;i++) {
+        getImage(i)
+        .then(extractURL);
+    }
+}
+
+function getImage(i) {
+    return new Promise(function(resolve, reject) {
+        let image = new Image();
+        let path = 'img/e' + i + '.png';
+        
+        image.src = path;
+        
+        let data = {
+            index: i,
+            image: image
+        }
+        
+        image.addEventListener('load', ()=>{
+            resolve(data);
+        });
+    });
+}
+
+function extractURL(param) {
+    ctx.drawImage(param.image,0,0);
+    let url = canvas.toDataURL();
+    ctx.clearRect(0,0,100,100);
+    
+    localStorage.setItem(param.index, url);
+}
+
 
 var cbSelect = function(img) {
     let id = img.id;
@@ -73,24 +130,6 @@ var cbDone = function() {
         
         
     }
-}
-
-function drawGallery(nums) {
-    let gallery = document.getElementById("gallery");
-    
-    for(i=0;i<nums;i++) {
-        addImage(gallery, i);
-    }
-}
-
-function addImage(gallery, id) {
-    var img = document.createElement("img");
-    img.src = "img/o" + id + ".png";
-    img.id = id;
-    img.setAttribute("onclick", 'cbSelect(this)')
-    img.setAttribute("class", 'gallery-img')
-    
-    gallery.appendChild(img);
 }
 
 
@@ -156,11 +195,7 @@ var writeText = function(text, data) {
 }
 
 var showSelectedImage = function(id, lines) {
-    let path = 'img/e'+ id + '.png'; 
-    let img = new Image();
-    img.src = path;
-
-    loadImage(path, canvas, ctx)
+    loadImage(id, canvas, ctx)
     .then(drawImageToCanvas)
     .then(function() {
         ctx.fillStyle = data.fillStyle
@@ -172,11 +207,14 @@ var showSelectedImage = function(id, lines) {
     })
 }
 
-function loadImage(path, canvas, ctx) {
+function loadImage(id, canvas, ctx) {
     return new Promise(function(resolve, reject) {
         let i = new Image();
-        i.src = path;
-        resolve({image:i, canvas: canvas, context: ctx});
+        i.src = localStorage[id];
+        
+        i.onload = function() {
+            resolve({image:i, canvas: canvas, context: ctx});
+        }
     });
 }
 
