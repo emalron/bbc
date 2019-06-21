@@ -2,8 +2,12 @@ html {
     font-size: 36px;
 }
 
-#desc p {
+.title p{
     text-align: center;
+}
+
+#desc p {
+    text-align: left;
     font-size: 1.0rem
 }
 
@@ -23,28 +27,31 @@ html {
     margin-left: 10px;
 }
 
-#inputs {
-    font-size: 1.0rem
+.inputs {
+    width: 100%;
+    font-size: 1.0rem;
+    display: inline-block;
+    overflow: hidden
 }
 
-#inputs #textarea {
-    display: flex;
-    float: left;
-    margin: 0px auto;
-    padding-bottom: 10px;
-    width: 100%
+.input .editor {
+    width:80%
 }
 
-#inputs #textarea #text {
-    width: 80%;
-    font-size: 1.0rem
+.inputs .baker {
+    display: block;
+    float:left;
+    width: 9%;
+    text-align: center;
+    border: 1px solid black;
+    height: auto;
+    border-radius: 5px;
+    
+    padding: 20px 0px;
 }
-
-#inputs button {
-    width: 19%;
-    margin-left: 1%;
-    float: right;
-    font-size: 1.0rem
+.inputs .baker:hover {
+    background-color: gray;
+    cursor: pointer;
 }
 
 #kiosk {

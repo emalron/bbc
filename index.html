@@ -12,10 +12,12 @@
           gtag('config', 'UA-126801807-2');
         </script>
         <script src="js/main.js" charset="UTF-8"></script>
+        <script src="js/editor.js" charset="utf-8"></script>
         <link rel="stylesheet" href="css/master.css">
+        <link rel="stylesheet" href="css/editor.css">
     </head>
-    <body>
-        <div class="title" id="desc">
+        <body>
+        <div class="title">
             <p>우리 친구들이 좋아하는 브붕콘 만들기 v.1.1</p>
             <p>연락:github.com/emalron/bbc issue 게시판</p>
             <hr>
@@ -25,15 +27,12 @@
             <canvas id="dis" width="100" height="100"></canvas>
             <img id="output-img" src="img/output.png">
         </div>
-        <div id="inputs">
-            <div>
-                <p>write here ↓</p>
-            </div>
-            <div id="textarea">
-                <textarea id="text" rows="4" cols="20" onkeyup="cbWrite(this.value)"></textarea>
-
-                <button onclick="cbDone()">Click to bake the image</button>
-            </div>
+        <div id="desc">
+            <p>write here ↓</p>
+        </div>
+        <div class="inputs">
+            <div class="editor"></div>
+            <div class="baker"></div>
         </div>
         <div id="kiosk">
             <hr>
