@@ -14,6 +14,8 @@ window.onload = function() {
     canvas = document.getElementById("dis");
     ctx = canvas.getContext('2d');
     
+    Editor.init({cv:canvas, ct:ctx});
+    
     let path = "data/sample0.txt";
     let req = new XMLHttpRequest();
     req.onreadystatechange = function() {
@@ -21,6 +23,7 @@ window.onload = function() {
             database = JSON.parse(this.responseText);
             drawGallery(database.images.length);
             setImagesToLocalStorage();
+            makeBaker();
         }
     }
     req.open("GET", path, true);
@@ -79,6 +82,12 @@ function extractURL(param) {
     localStorage.setItem(param.index, url);
 }
 
+function makeBaker() {
+    var baker = document.getElementsByClassName('baker')[0];
+    baker.innerHTML = "Click to bake image";
+    baker.addEventListener('click', cbDone);
+}
+
 
 var cbSelect = function(img) {
     let id = img.id;
@@ -99,17 +108,14 @@ var cbSelect = function(img) {
     canvas.height = selectedImg.height;
     ctx.font = "11px 굴림";
     
-    // clear textarea
-    let textA = document.getElementById("text");
-    textA.value = "";
-    
     // selectData
     setData(database, id);
+    Editor.setBBC(data);
 }
 
 var cbWrite = function(text) {
     if(data != null) {
-        writeText(text, data);
+        Editor.writeText(data);
     }
 }
 
@@ -127,8 +133,6 @@ var cbDone = function() {
             'event_category': 'work done',
             'event_label': selectedImg.id
         });
-        
-        
     }
 }
 
@@ -154,81 +158,4 @@ function addLinInfo(array, x, y, width, i) {
                 line: i,
                 width: width
             });
-}
-
-
-var writeText = function(text, data) {
-    let letters = text.split("");
-    let line = 0;
-    let lines = new Array(data.lineInfo.length);
-    let metric = 0;
-    let wid = 0;
-    let unit = 0;
-    let testLine;
-    
-    for(i=0;i<data.lineInfo.length;i++) {
-        lines[i] = "";
-    }
-    
-    while(letters.length > 0) {
-        unit = ctx.measureText(letters[0]).width;
-        metric = ctx.measureText(lines[line]).width + unit;
-        wid = data.lineInfo[line].width;
-        
-        testLine = metric >= wid;
-        if(testLine) {
-            let j = ctx.measureText(lines[line]).width;
-            if(line+1 >= lines.length) {
-                lines.push = [];
-                let dex = data.lineInfo;
-                addLinInfo(dex, dex[line].x, dex[line-1].y, dex[line].width, 1);
-            }
-            line++;
-            lines[line] = "";
-        }
-        else {
-            lines[line] += letters.shift();
-        }
-    }
-    
-    showSelectedImage(data.id, lines)
-}
-
-var showSelectedImage = function(id, lines) {
-    loadImage(id, canvas, ctx)
-    .then(drawImageToCanvas)
-    .then(function() {
-        ctx.fillStyle = data.fillStyle
-        ctx.font = "11px 굴림";
-    
-        for(j=0; j<lines.length; j++) {
-            ctx.fillText(lines[j], data.lineInfo[j].x, data.lineInfo[j].y);
-        }
-    })
-}
-
-function loadImage(id, canvas, ctx) {
-    return new Promise(function(resolve, reject) {
-        let i = new Image();
-        i.src = localStorage[id];
-        
-        i.onload = function() {
-            resolve({image:i, canvas: canvas, context: ctx});
-        }
-    });
-}
-
-function drawImageToCanvas(param) {
-    return new Promise(function(resolve, reject) {
-        let image = param.image;
-        let canv = param.canvas;
-        let ctx = param.context;
-        
-        canv.width = 100;
-        canv.height = 100;
-        
-        ctx.clearRect(0,0,100,100);
-        ctx.drawImage(image, 0, 0);
-        resolve(canv);
-    });
 }
