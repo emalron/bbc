@@ -22,60 +22,65 @@
     background-color: white;
     margin: 0;
 }
-    .toolbar {
-        border: 1px solid black;
-        width: -webkit-fill-available;
-        height: 36px;
-        float: left;
-        display: block;
-        vertical-align: middle;
-        padding-right: 10px;
-        padding-left: 10px;
-        background-color: aliceblue;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-    }
-    
-    .toolbar ul {
-        margin: 0px;
-        padding: 0px;
-        height: inherit;
-        list-style: none;
-        display: flex;
-        align-items: center;
-    }
-    
-    .toolbar ul li {
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-        margin-left: 10px;
-        border: 1px solid black;
-        padding: 4px;
-        cursor: pointer;
-    }
-    
-    .toolbar ul #red {
-        color: red;
-        background-color: red;
-    }
-    .toolbar ul #blue {
-        color: blue;
-        background-color: blue;
-    }
-    .toolbar ul #green {
-        color: green;
-        background-color: green;
-    }
-    .toolbar ul #yellow {
-        color: yellow;
-        background-color: yellow;
-    }
-    .toolbar ul #black {
-        color: black;
-        background-color: black;
-    }
-    .toolbar ul #white {
-        color: white;
-        background-color: white;
-    }
+.toolbar {
+    border: 1px solid black;
+    width: -webkit-fill-available;
+    height: 36px;
+    float: left;
+    display: block;
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: aliceblue;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.toolbar ul {
+    margin: 0px;
+    padding: 0px;
+    height: inherit;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar ul li {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-left: 10px;
+    border: 1px solid black;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.toolbar .cButton {
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+.toolbar ul #red {
+    color: black;
+    background-color: red;
+}
+.toolbar ul #blue {
+    color: white;
+    background-color: blue;
+}
+.toolbar ul #green {
+    color: white;
+    background-color: green;
+}
+.toolbar ul #yellow {
+    color: black;
+    background-color: yellow;
+}
+.toolbar ul #black {
+    color: white;
+    background-color: black;
+}
+.toolbar ul #white {
+    color: black;
+    background-color: white;
+}
