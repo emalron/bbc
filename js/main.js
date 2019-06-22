@@ -14,8 +14,10 @@ window.onload = function() {
     canvas = document.getElementById("dis");
     ctx = canvas.getContext('2d');
     
+    // editor setup
     Editor.init({cv:canvas, ct:ctx});
     
+    // setup database
     let path = "data/sample0.txt";
     let req = new XMLHttpRequest();
     req.onreadystatechange = function() {
@@ -28,7 +30,6 @@ window.onload = function() {
     }
     req.open("GET", path, true);
     req.send();
-    
 }
 
 function drawGallery(nums) {
