@@ -88,54 +88,53 @@ var Editor = Editor || {};
     function parser() {
         var nodes = Array.from(document.getElementById('edit').childNodes);
         var output = [];
-
+        console.log('---');
+        console.log(nodes);
         recursive(nodes, output);
-        
         console.log(output);
-
+        console.log('****')
         colorT(output, bbc);
     }
 
     function recursive(input, output) {
         if(input.length == 0) {
-            return output
+            return 0;
         }
+        
         else {
             let cur = input.shift();
-
-
-            if(cur.tagName == 'DIV') {
-                if(output.length > 0 ) {
-                    data = {
-                        text: '\r\n',
-                        color: ""
-                    }
-                    output.push(data);
-                }
-                let depth = Array.from(cur.childNodes);
-                recursive(depth, output);
-                recursive(input, output);
-            }
-            else if(cur.tagName == 'FONT') {
-                console.log(cur);
-                data = {
-                    text: cur.textContent,
-                    color: cur.color
-                }
-                output.push(data);
-                recursive(input,output);
-            }
-            else if(cur.nodeValue != null) {
-                data = {
-                    text: cur.nodeValue,
-                    color: ""
-                    }
-                output.push(data)
-                recursive(input,output);
+            
+            if(cur.nodeType == 3) {
+                output.push({text:cur.textContent, color: ""});
             }
             else {
-                recursive(input,output);
+                switch(cur.tagName) {
+                    case 'FONT':
+                        output.push({text:cur.textContent, color: cur.color});
+                        break;
+                        
+                    case 'BR':
+                        output.push({text: '', color: ""});
+                        break;
+                        
+                    case 'DIV':
+                        let depth = Array.from(cur.childNodes);
+                        
+                        if(output.length != 0) {
+                            output.push({text: '\r\n', color: ""});
+                        }
+                        recursive(depth, output);
+                        
+                        break;
+                        
+                    case 'SPAN':
+                        let depth2 = Array.from(cur.childNodes);
+                        recursive(depth2, output);
+                        break;
+                }
             }
+            
+            recursive(input, output);
         }
     }
 
@@ -154,16 +153,13 @@ var Editor = Editor || {};
             for(let i=0; i< arr.length; i++) {
                 var textColor = arr[i].color || data.fillStyle;
                 console.log(arr[i]);
-                
                 for(let j=0; j <arr[i].text.length; j++) {
                     var letter = arr[i].text[j];
                     
                     var isNewLine = newline_pattern.test(letter);
-                    console.log(isNewLine);
                     if(isNewLine) {
                         pos.y += 15;
                         pos.x = data.lineInfo[0].x;
-                        console.log(data.lineInfo[0].x);
                     }
                     else {
                         ctx.fillStyle = textColor;
