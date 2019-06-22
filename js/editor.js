@@ -29,7 +29,7 @@ var Editor = Editor || {};
             list.addEventListener('mousedown', function(e) {
                 e.preventDefault();
             })
-            list.innerHTML = '■';
+            list.innerHTML = 'T';
 
             menu.appendChild(list);
         })
