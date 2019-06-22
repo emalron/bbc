@@ -88,12 +88,10 @@ var Editor = Editor || {};
     function parser() {
         var nodes = Array.from(document.getElementById('edit').childNodes);
         var output = [];
-        console.log('---');
-        console.log(nodes);
+        
         recursive(nodes, output);
-        console.log(output);
-        console.log('****')
-        colorT(output, bbc);
+        if(bbc)
+            colorT(output, bbc);
     }
 
     function recursive(input, output) {
@@ -131,17 +129,18 @@ var Editor = Editor || {};
                         let depth2 = Array.from(cur.childNodes);
                         recursive(depth2, output);
                         break;
-                }
-            }
+                } // end of the switch
+            } // end of second else
             
             recursive(input, output);
-        }
-    }
+            
+        } // end of first else
+    } // end of recursive function
 
     function colorT(arr, data) {
         let id = data.id;
         let bgImg = new Image();
-        let pos = {x:data.lineInfo[0].x, y:data.lineInfo[0].y}
+        let pos = {x: data.lineInfo[0].x, y: data.lineInfo[0].y}
         let newline_pattern = /\n/;
         
         bgImg.src = localStorage[id];
