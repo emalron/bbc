@@ -10,7 +10,6 @@ var Model = Model || {};
         var output = [];
         
         recursive(nodes, output);
-        
         return output;
     }
 
@@ -66,7 +65,7 @@ var Model = Model || {};
             editor.focus();
         }
         
-        parser();
+        cbWrite();
     }
     
     model_.init = function(param) {
