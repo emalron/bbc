@@ -1,8 +1,5 @@
 var Editor = Editor || {};
 (function(editor_) {
-    var canv;
-    var ctx;
-    var bbc;
     var editor;
     
     function initialize() {
@@ -25,10 +22,6 @@ var Editor = Editor || {};
             var list = document.createElement('li');
             list.setAttribute('id', e)
             list.setAttribute('class', 'cButton');
-            list.addEventListener('click', makeColor);
-            list.addEventListener('mousedown', function(e) {
-                e.preventDefault();
-            })
             list.innerHTML = 'T';
 
             menu.appendChild(list);
@@ -42,11 +35,21 @@ var Editor = Editor || {};
 
         let confirm = document.createElement('li');
         confirm.setAttribute('class', 'cButton');
-        confirm.addEventListener('click', parser);
         confirm.innerHTML = "Confirm"
         menu.appendChild(confirm);
 
         editor.appendChild(toolbar);
+    }
+    
+    function setEventFunctions(classID, func) {
+        var list = Array.from(document.getElementsByClassName(classID));
+        
+        list.forEach( e => {
+            e.addEventListener('click', func);
+            e.addEventListener('mousedown', function(j) {
+                j.preventDefault();
+            });
+        })
     }
 
     function setPlain(editor) {
@@ -57,19 +60,6 @@ var Editor = Editor || {};
         plain.addEventListener('keyup', cbWrite);
 
         editor.appendChild(plain);
-    }
-
-    function makeColor(event) {
-        var doc = document.getElementById('edit');
-        var code = event.target.id;
-
-        console.log(code);
-        document.execCommand('ForeColor', false, code)
-        if(doc) {
-            doc.focus();
-        }
-        
-        parser();
     }
 
     function reverseBackground() {
@@ -84,106 +74,9 @@ var Editor = Editor || {};
             plain.style.backgroundColor = 'white';
         }
     }
-
-    function parser() {
-        var nodes = Array.from(document.getElementById('edit').childNodes);
-        var output = [];
-        
-        recursive(nodes, output);
-        if(bbc)
-            colorT(output, bbc);
-    }
-
-    function recursive(input, output) {
-        if(input.length == 0) {
-            return 0;
-        }
-        
-        else {
-            let cur = input.shift();
-            
-            if(cur.nodeType == 3) {
-                output.push({text:cur.textContent, color: ""});
-            }
-            else {
-                switch(cur.tagName) {
-                    case 'FONT':
-                        output.push({text:cur.textContent, color: cur.color});
-                        break;
-                        
-                    case 'BR':
-                        output.push({text: '', color: ""});
-                        break;
-                        
-                    case 'DIV':
-                        let depth = Array.from(cur.childNodes);
-                        
-                        if(output.length != 0) {
-                            output.push({text: '\r\n', color: ""});
-                        }
-                        recursive(depth, output);
-                        
-                        break;
-                        
-                    case 'SPAN':
-                        let depth2 = Array.from(cur.childNodes);
-                        recursive(depth2, output);
-                        break;
-                } // end of the switch
-            } // end of second else
-            
-            recursive(input, output);
-            
-        } // end of first else
-    } // end of recursive function
-
-    function colorT(arr, data) {
-        let id = data.id;
-        let bgImg = new Image();
-        let pos = {x: data.lineInfo[0].x, y: data.lineInfo[0].y}
-        let newline_pattern = /\n/;
-        
-        bgImg.src = localStorage[id];
-        
-        bgImg.onload = () => {
-            ctx.clearRect(0,0,300,300);
-            ctx.drawImage(bgImg, 0, 0);
-            
-            for(let i=0; i< arr.length; i++) {
-                var textColor = arr[i].color || data.fillStyle;
-                console.log(arr[i]);
-                for(let j=0; j <arr[i].text.length; j++) {
-                    var letter = arr[i].text[j];
-                    
-                    var isNewLine = newline_pattern.test(letter);
-                    if(isNewLine) {
-                        pos.y += 15;
-                        pos.x = data.lineInfo[0].x;
-                    }
-                    else {
-                        ctx.fillStyle = textColor;
-                        ctx.font = "11px 굴림";
-                        ctx.fillText(letter,pos.x,pos.y);
-                        pos.x += ctx.measureText(letter).width;
-                    }
-                }
-            }
-        }
-    }
     
-    editor_.init = function(param) {
-        canv = param.cv;
-        ctx = param.ct;
-        
-        initialize();
-    }
+    editor_.init = initialize;
     
-    editor_.setBBC = function(d) {
-        bbc = d;
-    }
-    
-    editor_.writeText = function(de) {
-        parser(de);
-    }
+    editor_.setEvent = setEventFunctions;
     
 })(Editor);

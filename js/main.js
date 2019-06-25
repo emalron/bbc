@@ -1,8 +1,5 @@
 // needed to make module
 
-var canvas;
-var ctx;
-var image;
 var data = {};
 var database = {};
 var selectedImg = {};
@@ -11,11 +8,14 @@ var selectedImg = {};
 
 window.onload = function() {
     // set initial canvas stuffs
-    canvas = document.getElementById("dis");
-    ctx = canvas.getContext('2d');
+    var canv = document.getElementById("dis");
     
     // editor setup
-    Editor.init({cv:canvas, ct:ctx});
+    Editor.init();
+    Editor.setEvent("cButton", Model.makeColor);
+    
+    // set Model;
+    Model.init({canvas: canv, editor: "edit"})
     
     // setup database
     let path = "data/sample0.txt";
@@ -76,6 +76,9 @@ function getImage(i) {
 }
 
 function extractURL(param) {
+    var ctx = Model.getCtx();
+    var canvas = Model.getCanvas();
+    
     ctx.drawImage(param.image,0,0);
     let url = canvas.toDataURL();
     ctx.clearRect(0,0,100,100);
@@ -92,6 +95,8 @@ function makeBaker() {
 
 var cbSelect = function(img) {
     let id = img.id;
+    let canvas = Model.getCanvas();
+    let ctx = Model.getCtx();
     
     if(selectedImg.id != undefined) {
         let pid = selectedImg.id;
@@ -111,14 +116,51 @@ var cbSelect = function(img) {
     
     // selectData
     setData(database, id);
-    Editor.setBBC(data);
+    Model.setBBC(data);
 }
 
 var cbWrite = function(text) {
     if(data != null) {
-        Editor.writeText(data);
+        var text = Model.parser();
+        
+        colorT(text, data);
     }
 }
+
+function colorT(arr, data) {
+    let ctx = Model.getCtx();
+    
+    let id = data.id;
+    let bgImg = new Image();
+    let pos = {x: data.lineInfo[0].x, y: data.lineInfo[0].y}
+    let newline_pattern = /\n/;
+
+    bgImg.src = localStorage[id];
+
+    bgImg.onload = () => {
+        ctx.clearRect(0,0,300,300);
+        ctx.drawImage(bgImg, 0, 0);
+
+        for(let i=0; i< arr.length; i++) {
+            var textColor = arr[i].color || data.fillStyle;
+            for(let j=0; j <arr[i].text.length; j++) {
+                var letter = arr[i].text[j];
+
+                var isNewLine = newline_pattern.test(letter);
+                if(isNewLine) {
+                    pos.y += 15;
+                    pos.x = data.lineInfo[0].x;
+                }
+                else {
+                    ctx.fillStyle = textColor;
+                    ctx.font = "11px 굴림";
+                    ctx.fillText(letter,pos.x,pos.y);
+                    pos.x += ctx.measureText(letter).width;
+                }
+            }
+        } // end of 
+    }
+} // end of colorT
 
 var cbDone = function() {
     if(selectedImg.id != undefined) {
