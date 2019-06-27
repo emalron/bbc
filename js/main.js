@@ -117,6 +117,11 @@ var cbSelect = function(img) {
     // selectData
     setData(database, id);
     Model.setBBC(data);
+    document.getElementById("edit").focus();
+    if(data != null) {
+        var text = Model.parser(); 
+        colorT(text, data);
+    } 
 }
 
 var cbWrite = function(text) {
