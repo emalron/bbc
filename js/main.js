@@ -1,8 +1,5 @@
 // needed to make module
 
-var canvas;
-var ctx;
-var image;
 var data = {};
 var database = {};
 var selectedImg = {};
@@ -11,9 +8,16 @@ var selectedImg = {};
 
 window.onload = function() {
     // set initial canvas stuffs
-    canvas = document.getElementById("dis");
-    ctx = canvas.getContext('2d');
+    var canv = document.getElementById("dis");
     
+    // editor setup
+    Editor.init();
+    Editor.setEvent("cButton", Model.makeColor);
+    
+    // set Model;
+    Model.init({canvas: canv, editor: "edit"})
+    
+    // setup database
     let path = "data/sample0.txt";
     let req = new XMLHttpRequest();
     req.onreadystatechange = function() {
@@ -21,11 +25,11 @@ window.onload = function() {
             database = JSON.parse(this.responseText);
             drawGallery(database.images.length);
             setImagesToLocalStorage();
+            makeBaker();
         }
     }
     req.open("GET", path, true);
     req.send();
-    
 }
 
 function drawGallery(nums) {
@@ -72,6 +76,9 @@ function getImage(i) {
 }
 
 function extractURL(param) {
+    var ctx = Model.getCtx();
+    var canvas = Model.getCanvas();
+    
     ctx.drawImage(param.image,0,0);
     let url = canvas.toDataURL();
     ctx.clearRect(0,0,100,100);
@@ -79,9 +86,17 @@ function extractURL(param) {
     localStorage.setItem(param.index, url);
 }
 
+function makeBaker() {
+    var baker = document.getElementsByClassName('baker')[0];
+    baker.innerHTML = "Click to bake image";
+    baker.addEventListener('click', cbDone);
+}
+
 
 var cbSelect = function(img) {
     let id = img.id;
+    let canvas = Model.getCanvas();
+    let ctx = Model.getCtx();
     
     if(selectedImg.id != undefined) {
         let pid = selectedImg.id;
@@ -99,19 +114,58 @@ var cbSelect = function(img) {
     canvas.height = selectedImg.height;
     ctx.font = "11px 굴림";
     
-    // clear textarea
-    let textA = document.getElementById("text");
-    textA.value = "";
-    
     // selectData
     setData(database, id);
+    Model.setBBC(data);
+    document.getElementById("edit").focus();
+    if(data != null) {
+        var text = Model.parser(); 
+        colorT(text, data);
+    } 
 }
 
 var cbWrite = function(text) {
     if(data != null) {
-        writeText(text, data);
+        var text = Model.parser();
+        
+        colorT(text, data);
     }
 }
+
+function colorT(arr, data) {
+    let ctx = Model.getCtx();
+    
+    let id = data.id;
+    let bgImg = new Image();
+    let pos = {x: data.lineInfo[0].x, y: data.lineInfo[0].y}
+    let newline_pattern = /\n/;
+
+    bgImg.src = localStorage[id];
+
+    bgImg.onload = () => {
+        ctx.clearRect(0,0,300,300);
+        ctx.drawImage(bgImg, 0, 0);
+
+        for(let i=0; i< arr.length; i++) {
+            var textColor = arr[i].color || data.fillStyle;
+            for(let j=0; j <arr[i].text.length; j++) {
+                var letter = arr[i].text[j];
+
+                var isNewLine = newline_pattern.test(letter);
+                if(isNewLine) {
+                    pos.y += 15;
+                    pos.x = data.lineInfo[0].x;
+                }
+                else {
+                    ctx.fillStyle = textColor;
+                    ctx.font = "11px 굴림";
+                    ctx.fillText(letter,pos.x,pos.y);
+                    pos.x += ctx.measureText(letter).width;
+                }
+            }
+        } // end of 
+    }
+} // end of colorT
 
 var cbDone = function() {
     if(selectedImg.id != undefined) {
@@ -127,8 +181,6 @@ var cbDone = function() {
             'event_category': 'work done',
             'event_label': selectedImg.id
         });
-        
-        
     }
 }
 
@@ -154,81 +206,4 @@ function addLinInfo(array, x, y, width, i) {
                 line: i,
                 width: width
             });
-}
-
-
-var writeText = function(text, data) {
-    let letters = text.split("");
-    let line = 0;
-    let lines = new Array(data.lineInfo.length);
-    let metric = 0;
-    let wid = 0;
-    let unit = 0;
-    let testLine;
-    
-    for(i=0;i<data.lineInfo.length;i++) {
-        lines[i] = "";
-    }
-    
-    while(letters.length > 0) {
-        unit = ctx.measureText(letters[0]).width;
-        metric = ctx.measureText(lines[line]).width + unit;
-        wid = data.lineInfo[line].width;
-        
-        testLine = metric >= wid;
-        if(testLine) {
-            let j = ctx.measureText(lines[line]).width;
-            if(line+1 >= lines.length) {
-                lines.push = [];
-                let dex = data.lineInfo;
-                addLinInfo(dex, dex[line].x, dex[line-1].y, dex[line].width, 1);
-            }
-            line++;
-            lines[line] = "";
-        }
-        else {
-            lines[line] += letters.shift();
-        }
-    }
-    
-    showSelectedImage(data.id, lines)
-}
-
-var showSelectedImage = function(id, lines) {
-    loadImage(id, canvas, ctx)
-    .then(drawImageToCanvas)
-    .then(function() {
-        ctx.fillStyle = data.fillStyle
-        ctx.font = "11px 굴림";
-    
-        for(j=0; j<lines.length; j++) {
-            ctx.fillText(lines[j], data.lineInfo[j].x, data.lineInfo[j].y);
-        }
-    })
-}
-
-function loadImage(id, canvas, ctx) {
-    return new Promise(function(resolve, reject) {
-        let i = new Image();
-        i.src = localStorage[id];
-        
-        i.onload = function() {
-            resolve({image:i, canvas: canvas, context: ctx});
-        }
-    });
-}
-
-function drawImageToCanvas(param) {
-    return new Promise(function(resolve, reject) {
-        let image = param.image;
-        let canv = param.canvas;
-        let ctx = param.context;
-        
-        canv.width = 100;
-        canv.height = 100;
-        
-        ctx.clearRect(0,0,100,100);
-        ctx.drawImage(image, 0, 0);
-        resolve(canv);
-    });
 }
