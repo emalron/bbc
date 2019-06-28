@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<title>KakaoLink v2 Demo(Default / Feed) - Kakao JavaScript SDK</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+</head>
+<body>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">
+[카카오링크 v2] 링크 버튼 (디폴트, 피드형)
+</h3>
+</div>
+<div class="panel-body">
+<h4>카카오톡 앱이 설치되어 있는 모바일 기기라면 아래의 링크가 동작합니다.</h4>
+<a id="kakao-link-btn" href="javascript:sendLink()">
+<img src="//dev.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+</a>
+<br>
+<a id="kakao-link-btn" href="javascript:sendLink2()">
+        <img src="//dev.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"/>
+        </a>
+</div>
+</div>
+<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('486be1c057000612428db6037d4a95d4');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    
+    function sendLink() {
+        Kakao.Link.sendCustom({
+            templateId: 16940,
+            templateArgs: {
+                'image_url': 'https://emalron.github.io/bbc/img/o9.png',
+                
+            }
+        });
+    }
+
+    function sendLink3() {
+        Kakao.Link.sendCustom({
+            templatedId: 16940,
+            templateArgs: {
+                'SCRAP_IMAGE': 'https://emalron.github.io/bbc/img/o9.png'
+            }
+        });
+    }
+
+    function sendLink2() {
+      Kakao.Link.sendDefault({
+    	objectType: 'feed',
+        content: {
+    	  title: '',
+    	  description: '',
+    	  imageUrl: 'https://emalron.github.io/bbc/img/o9.png',
+          imageWidth: 200,
+          imageHeight: 100,
+    	  link: {
+    		mobileWebUrl: '',
+    		webUrl: ''
+    	  }
+    	},
+        
+    	// social: {
+    	//   likeCount: 286,
+    	//   commentCount: 45,
+    	//   sharedCount: 845
+    	// },
+        
+    	// buttons: [{
+    	//   title: '웹으로 보기',
+    	//   link: {
+    	// 	mobileWebUrl: 'https://developers.kakao.com',
+    	// 	webUrl: 'https://developers.kakao.com'
+    	//   }
+    	// }, {
+    	//   title: '앱으로 보기',
+    	//   link: {
+    	// 	mobileWebUrl: 'https://developers.kakao.com',
+    	// 	webUrl: 'https://developers.kakao.com'
+    	//   }
+    	// }]
+      });
+    }
+  //]]>
+</script>
+
+</body>
+</html>
